@@ -7,15 +7,46 @@ import numpy as np
 import warnings
 
 
-
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 
 #adding title
 st.title("Dizzy Doughnut")
-
 df = pd.read_csv("Fifa.csv")
 
 st.write(df.head(2))
+
+from PIL import Image
+import requests
+from io import BytesIO
+# List of image links
+image_links = df["Image Link"].head(20)
+# List of labels
+labels = df["Known As"].head(20)
+# Function to load an image from a URL
+def load_image_from_url(url):
+    response = requests.get(url)
+    image = Image.open(BytesIO(response.content))
+    return image
+
+# Calculate the number of rows and columns for the subplot grid
+num_images = len(image_links)
+num_rows = 2
+num_cols = (num_images + 1) // 2
+# Create a subplot grid
+fig, axes = plt.subplots(num_rows, num_cols, figsize=(12, 6))
+# Plot each image in the grid with its corresponding label
+for i, ax in enumerate(axes.flat):
+    if i < num_images:
+        image_url = image_links[i]
+        image = load_image_from_url(image_url)
+        label = labels[i]
+        ax.imshow(image)
+        ax.set_title(label)
+        ax.axis("off")
+# Adjust the layout
+plt.tight_layout()
+# Show the plot
+plt.show()
 
 #Spencer :
 
