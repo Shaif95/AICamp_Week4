@@ -33,20 +33,17 @@ num_images = len(image_links)
 num_rows = 2
 num_cols = (num_images + 1) // 2
 # Create a subplot grid
-fig, axes = plt.subplots(num_rows, num_cols, figsize=(12, 6))
-# Plot each image in the grid with its corresponding label
-for i, ax in enumerate(axes.flat):
-    if i < num_images:
-        image_url = image_links[i]
-        image = load_image_from_url(image_url)
-        label = labels[i]
-        ax.imshow(image)
-        ax.set_title(label)
-        ax.axis("off")
-# Adjust the layout
-plt.tight_layout()
-# Show the plot
-plt.show()
+def display_images():
+    # Plot each image in the grid with its corresponding label
+    for i, image_link in enumerate(image_links):
+        if i < num_images:
+            image = load_image_from_url(image_link)
+            label = labels[i]
+
+            # Display the image with label
+            st.image(image, caption=label, use_column_width=True)
+st.title('Image Gallery')
+display_images()
 
 #Spencer :
 
