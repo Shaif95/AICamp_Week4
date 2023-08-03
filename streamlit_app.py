@@ -96,8 +96,13 @@ fig = ax.pie(sizes,
 ax.set_title('Example of an Intersection between Overall Top Players and Top Players in Different Skills')
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-# Display the pie chart in Streamlit
-st.pyplot(fig)
+buffer = io.BytesIO()
+plt.savefig(buffer, format='png')
+plt.close(fig)
+buffer.seek(0)
+
+# Display the plot in Streamlit
+st.image(buffer)
 
 st.write("Make sure you have both Streamlit and Matplotlib installed (pip install streamlit matplotlib) to run the code correctly. Also, replace the sample data (sizes, labels, colors, explode) with your actual data to create the desired pie chart.")
 
