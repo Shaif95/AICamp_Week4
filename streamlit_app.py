@@ -38,23 +38,27 @@ num_cols = (num_images + 1) // 2
 
 # Create a subplot grid
 # Create a function to display small-sized images using Streamlit
+# Create a function to display small-sized images on a horizontal line using Streamlit
 def display_images():
-    # Define the desired size for the thumbnails
-    thumbnail_size = (100, 100)
+  # Define the desired size for the thumbnails
+  thumbnail_size = (100, 100)
 
+  # Create a horizontal layout container
+  with st.beta_container():
     # Plot each image in the grid with its corresponding label
     for i, image_link in enumerate(image_links):
-        if i < num_images:
-            image = load_image_from_url(image_link)
-            label = labels[i]
+      if i < num_images:
+        image = load_image_from_url(image_link)
+        label = labels[i]
 
-            # Resize the image to the desired thumbnail size
-            image.thumbnail(thumbnail_size)
+        # Resize the image to the desired thumbnail size
+        image.thumbnail(thumbnail_size)
 
-            # Display the image with label
-            st.image(image, caption=label)
+        # Display the image with label
+        st.image(image, caption=label, width=thumbnail_size[0])
 
 
+# Rest of the code remains the same...
 
 #Spencer :
 
