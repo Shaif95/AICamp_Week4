@@ -38,9 +38,9 @@ st.write(
 st.header(
   "How large is the standard deviation for the players in terms of skill or win rates?"
 )
-
+fig, ax = plt.subplots()
 fig = df.hist("Overall")
-st.plotly(fig)
+st.pyplot(fig)
 
 st.write(
   "Standard Deviation = 6.788352681607474"
