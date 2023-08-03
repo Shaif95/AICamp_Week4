@@ -48,7 +48,9 @@ st.write("By figuring out the mean, standard deviation, and range, we can see th
 
 st.header("What is the relationship between age and skill level?")
 
-px.scatter(df, x = 'Age', y = 'Overall', color = 'Age', title = "Relationship Between Age and Skill Level")
+fig = px.scatter(df, x = 'Age', y = 'Overall', color = 'Age', title = "Relationship Between Age and Skill Level")
+
+st.plotly_chart(fig)
 
 st.write("What was most interesting about the correlation between age and skill is how its not as much of a factor as initially hypothosized. There is still a slight curve up when the age goes up and curve down when players are getting older, but the skill level range is high enough to where it does not make much of a difference when seen in the data.")
 
@@ -72,10 +74,10 @@ colors = ['skyblue', 'lightcoral', 'lightgreen']
 explode = (0.1, 0, 0)  # explode the first slice (Intersection)
 # Plotting the pie chart
 plt.figure(figsize=(8, 8))
-plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
+fig = plt.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', shadow=True, startangle=140)
 plt.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 plt.title('Example of an Intersection between Overall Top Players and Top Players in Different Skills')
-plt.show()
+st.pyplot(fig)
 
 st.write("There are two types of skill levels: Skills used during play and scores for how each player plays in a position. For the actual skills, there is a low intersection between the players overall score and skill score - many of which are in the low 10s and maybe even lower. There are still some outliers, with some being higher in the 40s. I believe this is the case as many players are good in their own type of skillsets and I theorize many players in different skill intersections are unique and don't come up as much in different skills. For each position on the field, there is a much higher result, with some going into the 30s but with some still in the early 10s. Another thing that could affect this is where the players usually play on the field. A goalie usually isn't good at scoring and a offensive player usually doesn't block shots from reaching the goal. Due to this, many players will not share all of the skill sets that are avaliable in the dataset.")
 
