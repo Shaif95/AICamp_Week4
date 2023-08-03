@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import warnings
 
-
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 
 #adding title
@@ -22,28 +21,32 @@ from io import BytesIO
 image_links = df["Image Link"].head(20)
 # List of labels
 labels = df["Known As"].head(20)
+
+
 # Function to load an image from a URL
 def load_image_from_url(url):
-    response = requests.get(url)
-    image = Image.open(BytesIO(response.content))
-    return image
+  response = requests.get(url)
+  image = Image.open(BytesIO(response.content))
+  return image
+
 
 # Calculate the number of rows and columns for the subplot grid
 num_images = len(image_links)
 num_rows = 2
 num_cols = (num_images + 1) // 2
+
+
 # Create a subplot grid
 def display_images():
-    # Plot each image in the grid with its corresponding label
-    for i, image_link in enumerate(image_links):
-        if i < num_images:
-            image = load_image_from_url(image_link)
-            label = labels[i]
+  # Plot each image in the grid with its corresponding label
+  for i, image_link in enumerate(image_links):
+    if i < num_images:
+      image = load_image_from_url(image_link)
+      label = labels[i]
 
-            # Display the image with label
-            st.image(image, caption=label, use_column_width=True)
-st.title('Image Gallery')
-display_images()
+      # Display the image with label
+      st.image(image, caption=label, use_column_width=True)
+
 
 #Spencer :
 
@@ -65,10 +68,12 @@ st.write(
   "By using overall score and the order in which the dataset was presented, we can see that Messi is the top player and is presumably the best player in terms of the data that we have. While some might also suggest that Cristiano is the best player, he is actually 9th in our data and is below Messi in overall score as well."
 )
 
+st.title('Image Gallery')
+display_images()
+
 st.header(
   "How large is the standard deviation for the players in terms of skill or win rates?"
 )
-
 
 fig, ax = plt.subplots()
 df.hist("Overall", ax=ax)
@@ -123,7 +128,9 @@ ax.pie(sizes,
        autopct='%1.1f%%',
        shadow=True,
        startangle=140)
-ax.set_title('Example of an Intersection between Overall Top Players and Top Players in Different Skills')
+ax.set_title(
+  'Example of an Intersection between Overall Top Players and Top Players in Different Skills'
+)
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 # Display the pie chart in Streamlit
@@ -154,25 +161,39 @@ plt.title('Players with the Best Potential for Improvement')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()
-st.write("In order to do this, we first needed to filter out the players that were of low overalls, since there were many with high potential-overall differences since they had a lot of time to play. I did this by ensuring that the data only included players above the rating of 85 so that we only received data from the currently relevant players. This showed that the players with the best potential for improvement included big names such as Pedri, Foden, Vinicius Jr., Haaland, and more.")
-
+st.write(
+  "In order to do this, we first needed to filter out the players that were of low overalls, since there were many with high potential-overall differences since they had a lot of time to play. I did this by ensuring that the data only included players above the rating of 85 so that we only received data from the currently relevant players. This showed that the players with the best potential for improvement included big names such as Pedri, Foden, Vinicius Jr., Haaland, and more."
+)
 
 st.header("How does the age of a player affect their potential?")
 df['Potential-Overall'] = df['Potential'] - df['Overall']
-fig2 = px.scatter(df,x='Age',  y='Potential-Overall', color="Overall")
+fig2 = px.scatter(df, x='Age', y='Potential-Overall', color="Overall")
 fig2
-st.write("Oftentimes, as someone’s body ages, they get worse at the sport they play. This is shown through the graph, where young teenagers with time to go have higher potentials for improvement, whereas older players who are due to retire soon have a lower, or even no potential for improvement.")
+st.write(
+  "Oftentimes, as someone’s body ages, they get worse at the sport they play. This is shown through the graph, where young teenagers with time to go have higher potentials for improvement, whereas older players who are due to retire soon have a lower, or even no potential for improvement."
+)
 
 st.header("How does potential affect the value of the release clause?")
-fig1 = px.scatter(df, x='Potential', y='Release Clause', title = 'The Relationship between Potential and Release Clause',
-                  labels = {'Potential': 'Potential', 'Release Clause' : 'Release Clause Value (in euros)'})
+fig1 = px.scatter(
+  df,
+  x='Potential',
+  y='Release Clause',
+  title='The Relationship between Potential and Release Clause',
+  labels={
+    'Potential': 'Potential',
+    'Release Clause': 'Release Clause Value (in euros)'
+  })
 fig1
-st.write("In this diagram, we can see that, as the potential overall of a player increases, so does the release clause value. This is because clubs apply a higher cost upon their players so that they don't leave, since the clubs want better players to stay and help them win.")
+st.write(
+  "In this diagram, we can see that, as the potential overall of a player increases, so does the release clause value. This is because clubs apply a higher cost upon their players so that they don't leave, since the clubs want better players to stay and help them win."
+)
 
 st.header("How does rating affect international reputation?")
-Scatter2 = df.plot.scatter(x='Overall', y = 'International Reputation')
+Scatter2 = df.plot.scatter(x='Overall', y='International Reputation')
 Scatter2
-st.write("In this diagram, we can see that the international reputation of a player is, on average, higher when a player is rated higher. We can see this through the fact that the players at the lower end of the overall spectrum have no international reputation, but players on the highest end of the spectrum have a very high international reputation.")
+st.write(
+  "In this diagram, we can see that the international reputation of a player is, on average, higher when a player is rated higher. We can see this through the fact that the players at the lower end of the overall spectrum have no international reputation, but players on the highest end of the spectrum have a very high international reputation."
+)
 
 #Gabe :
 
@@ -201,12 +222,16 @@ plt.xticks(rotation=20)  # Rotate the x-axis labels if they are too long
 # Display the chart using Streamlit
 st.pyplot()
 
-#How does wage impact Overall ranking?  
+#How does wage impact Overall ranking?
 st.header("how doesa the wage of a player impact their over all ranking?")
-val_overall = px.scatter(df, x='Value(in Euro)', y='Overall', color="Nationality")
+val_overall = px.scatter(df,
+                         x='Value(in Euro)',
+                         y='Overall',
+                         color="Nationality")
 st.plotly_chart(val_overall)
 #Is there any relation between Position played and age ?    : Scatter
-st.header("what is the relation between postion played and the age of a player")
+st.header(
+  "what is the relation between postion played and the age of a player")
 
 pos_age = px.scatter(df, x='Age', y='Positions Played', color="Overall")
 #Conclusion :
