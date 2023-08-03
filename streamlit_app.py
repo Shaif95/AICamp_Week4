@@ -86,7 +86,7 @@ colors = ['skyblue', 'lightcoral', 'lightgreen']
 explode = (0.1, 0, 0)  # explode the first slice (Intersection)
 # Plotting the pie chart
 fig, ax = plt.subplots(figsize=(8, 8))
-ax.pie(sizes,
+fig = ax.pie(sizes,
        explode=explode,
        labels=labels,
        colors=colors,
