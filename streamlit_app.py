@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import warnings
-import io
+
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 
 #adding title
@@ -86,7 +86,7 @@ colors = ['skyblue', 'lightcoral', 'lightgreen']
 explode = (0.1, 0, 0)  # explode the first slice (Intersection)
 # Plotting the pie chart
 fig, ax = plt.subplots(figsize=(8, 8))
-fig = ax.pie(sizes,
+ax.pie(sizes,
        explode=explode,
        labels=labels,
        colors=colors,
@@ -96,13 +96,8 @@ fig = ax.pie(sizes,
 ax.set_title('Example of an Intersection between Overall Top Players and Top Players in Different Skills')
 ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-buffer = io.BytesIO()
-plt.savefig(buffer, format='png')
-plt.close(fig)
-buffer.seek(0)
-
-# Display the plot in Streamlit
-st.image(buffer)
+# Display the pie chart in Streamlit
+st.pyplot(fig)
 
 st.write("Make sure you have both Streamlit and Matplotlib installed (pip install streamlit matplotlib) to run the code correctly. Also, replace the sample data (sizes, labels, colors, explode) with your actual data to create the desired pie chart.")
 
