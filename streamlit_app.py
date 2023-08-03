@@ -181,7 +181,7 @@ ax.set_ylabel('Potential Improvement')
 ax.set_title('Players with the Best Potential for Improvement')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
-
+plt.show()
 # Show the plot using Streamlit
 st.pyplot(fig)
 
@@ -214,14 +214,10 @@ st.write(
 )
 
 st.header("How does rating affect international reputation?")
+fig = px.scatter(df, x='Overall', y='International Reputation', title='Scatter Plot: Overall vs. International Reputation')
 
-fig, ax = plt.subplots()
-ax.scatter(x='Overall', y='International Reputation', data=df)
-ax.set_xlabel('Overall')
-ax.set_ylabel('International Reputation')
-ax.set_title('Scatter Plot: Overall vs. International Reputation')
-plt.tight_layout()
-
+# Show the plot using Streamlit
+st.plotly_chart(fig)
 # Show the plot using Streamlit
 st.pyplot(fig)
 
