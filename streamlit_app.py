@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import warnings
 
+warnings.filterwarnings("ignore")
+st.set_option('deprecation.showPyplotGlobalUse', False)
+
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 
 #adding title
@@ -141,6 +144,7 @@ st.write("In this diagram, we can see that, as the potential overall of a player
 
 st.header("How does rating affect international reputation?")
 Scatter2 = df.plot.scatter(x='Overall', y = 'International Reputation')
+Scatter2
 st.write("In this diagram, we can see that the international reputation of a player is, on average, higher when a player is rated higher. We can see this through the fact that the players at the lower end of the overall spectrum have no international reputation, but players on the highest end of the spectrum have a very high international reputation.")
 
 #Gabe :
