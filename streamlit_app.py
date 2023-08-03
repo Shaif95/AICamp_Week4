@@ -14,14 +14,6 @@ df = pd.read_csv("Fifa.csv")
 
 st.write(df.head(2))
 
-st.write("Hi! My name is Spencer. I'm going into 10th grade and decided to join AI Camp because I was curious on what data analysis was as well as algorithms and AI. I hoped to be able to use what I learn for my further interests in enginnering and robotics")
-
-st.write("HI!, my name is Gabe Bergman, i am going into the 12rth grade. i decided to join AI camp since I have always had a inate interest in data analytyi along with receving ")
-
-st.write("Hi, my name is Rishi Kumar, and I am a Grade 11 IB student from Toronto, Canada. I took this course in order to learn how I could apply my knowledge of Python better in real life, and data science is one of the best areas to use it in.")
-
-st.write("")
-
 from PIL import Image
 import requests
 from io import BytesIO
@@ -43,32 +35,32 @@ num_images = len(image_links)
 num_rows = 2
 num_cols = (num_images + 1) // 2
 
-
-# Create a subplot grid
-# Create a function to display small-sized images using Streamlit
 # Create a function to display small-sized images on a horizontal line using Streamlit
 def display_images():
-  # Define the desired size for the thumbnails
-  thumbnail_size = (100, 100)
+    # Define the desired size for the thumbnails
+    thumbnail_size = (100, 100)
 
-  # Create a horizontal layout container
-  with st.beta_container():
+    # Calculate the number of images to show per row
+    images_per_row = 4
+    num_rows = (num_images + images_per_row - 1) // images_per_row
+
+    # Create the horizontal layout with multiple columns
+    cols = st.columns(images_per_row)
+
     # Plot each image in the grid with its corresponding label
     for i, image_link in enumerate(image_links):
-      if i < num_images:
-        image = load_image_from_url(image_link)
-        label = labels[i]
+        if i < num_images:
+            image = load_image_from_url(image_link)
+            label = labels[i]
 
-        # Resize the image to the desired thumbnail size
-        image.thumbnail(thumbnail_size)
+            # Resize the image to the desired thumbnail size
+            image.thumbnail(thumbnail_size)
 
-        # Display the image with label
-        st.image(image, caption=label, width=thumbnail_size[0])
-
+            # Display the image with label in the corresponding column
+            cols[i % images_per_row].image(image, caption=label, width=thumbnail_size[0])
 
 # Rest of the code remains the same...
 
-#Spencer :
 
 #Introduction : Write a couple of lines about the dataset Fifa 23
 
@@ -173,19 +165,14 @@ df_filtered[
 df_sorted = df.sort_values(by='Potential-Overall', ascending=False)
 players = df_filtered['Known As']
 potential_improvement = df_filtered['Potential-Overall']
-
-fig, ax = plt.subplots(figsize=(10, 6))
-ax.bar(players, potential_improvement, color='skyblue')
-ax.set_xlabel('Players')
-ax.set_ylabel('Potential Improvement')
-ax.set_title('Players with the Best Potential for Improvement')
+plt.figure(figsize=(10, 6))
+plt.bar(players, potential_improvement, color='skyblue')
+plt.xlabel('Players')
+plt.ylabel('Potential Improvement')
+plt.title('Players with the Best Potential for Improvement')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
 plt.show()
-# Show the plot using Streamlit
-st.pyplot(fig)
-
-
 st.write(
   "In order to do this, we first needed to filter out the players that were of low overalls, since there were many with high potential-overall differences since they had a lot of time to play. I did this by ensuring that the data only included players above the rating of 85 so that we only received data from the currently relevant players. This showed that the players with the best potential for improvement included big names such as Pedri, Foden, Vinicius Jr., Haaland, and more."
 )
@@ -214,13 +201,8 @@ st.write(
 )
 
 st.header("How does rating affect international reputation?")
-fig = px.scatter(df, x='Overall', y='International Reputation', title='Scatter Plot: Overall vs. International Reputation')
-
-# Show the plot using Streamlit
-st.plotly_chart(fig)
-# Show the plot using Streamlit
-st.pyplot(fig)
-
+Scatter2 = df.plot.scatter(x='Overall', y='International Reputation')
+Scatter2
 st.write(
   "In this diagram, we can see that the international reputation of a player is, on average, higher when a player is rated higher. We can see this through the fact that the players at the lower end of the overall spectrum have no international reputation, but players on the highest end of the spectrum have a very high international reputation."
 )
@@ -264,9 +246,5 @@ st.header(
   "what is the relation between postion played and the age of a player")
 
 pos_age = px.scatter(df, x='Age', y='Positions Played', color="Overall")
-
+#Conclusion :
 st.plotly_chart(pos_age)
-
-st.header("Conclusion :")
-
-st.write("Based on the dataset analysis, Messi is the top player and likely the GOAT of soccer. Age has a slight impact on skill level, and higher potential is associated with a higher release clause value.")
