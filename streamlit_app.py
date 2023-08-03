@@ -5,7 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import warnings
-
+import io
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 
 #adding title
