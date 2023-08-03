@@ -52,7 +52,7 @@ def display_images():
             image.thumbnail(thumbnail_size)
 
             # Display the image with label
-            st.image(image, caption=label, use_column_width=True)
+            st.image(image, caption=label)
 
 
 
