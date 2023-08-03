@@ -45,7 +45,7 @@ def display_images():
     num_rows = (num_images + images_per_row - 1) // images_per_row
 
     # Create the horizontal layout with multiple columns
-    cols = st.columns(images_per_row)
+    cols = st.beta_columns(images_per_row)
 
     # Plot each image in the grid with its corresponding label
     for i, image_link in enumerate(image_links):
@@ -61,6 +61,7 @@ def display_images():
 
 # Rest of the code remains the same...
 
+#Spencer :
 
 #Introduction : Write a couple of lines about the dataset Fifa 23
 
