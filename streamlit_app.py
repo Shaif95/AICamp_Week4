@@ -39,7 +39,7 @@ st.header(
   "How large is the standard deviation for the players in terms of skill or win rates?"
 )
 fig, ax = plt.subplots()
-fig = df.hist("Overall")
+df.hist("Overall", ax=ax)
 st.pyplot(fig)
 
 st.write(
