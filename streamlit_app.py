@@ -5,10 +5,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 import warnings
-import matplotlib.pyplot as plt
-from PIL import Image
-import requests
-from io import BytesIO
+
 
 
 #look for more information here https://docs.streamlit.io/library/cheatsheet
