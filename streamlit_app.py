@@ -10,6 +10,21 @@ import warnings
 
 #adding title
 st.title("Dizzy Doughnut")
+
+
+st.write(
+  "Hi! My name is Spencer. I'm going into 10th grade and decided to join AI Camp because I was curious on what data analysis was as well as algorithms and AI. I hoped to be able to use what I learn for my further interests in enginnering and robotics"
+)
+
+st.write(
+  "HI!, my name is Gabe Bergman, I am going into the 12th grade. I decided to join AI camp since I have always had an innate interest in data analytics along with my receiving of a scholarship from AI camp, I'm hoping AI camp will increase my understanding of data analytics."
+)
+
+st.write(
+  "Hi, my name is Rishi Kumar, and I am a Grade 11 IB student from Toronto, Canada. I took this course in order to learn how I could apply my knowledge of Python better in real life, and data science is one of the best areas to use it in."
+)
+
+
 df = pd.read_csv("Fifa.csv")
 
 st.write(df.head(2))
@@ -201,8 +216,13 @@ st.write(
 )
 
 st.header("How does rating affect international reputation?")
-Scatter2 = df.plot.scatter(x='Overall', y='International Reputation')
-Scatter2
+fig = px.scatter(df,
+                 x='Overall',
+                 y='International Reputation',
+                 title='Scatter Plot: Overall vs. International Reputation')
+
+# Show the plot using Streamlit
+st.plotly_chart(fig)
 st.write(
   "In this diagram, we can see that the international reputation of a player is, on average, higher when a player is rated higher. We can see this through the fact that the players at the lower end of the overall spectrum have no international reputation, but players on the highest end of the spectrum have a very high international reputation."
 )
@@ -248,3 +268,9 @@ st.header(
 pos_age = px.scatter(df, x='Age', y='Positions Played', color="Overall")
 #Conclusion :
 st.plotly_chart(pos_age)
+
+st.header("Conclusion :")
+
+st.write(
+  "Based on the dataset analysis, Messi is the top player and likely the GOAT of soccer. Age has a slight impact on skill level, and higher potential is associated with a higher release clause value."
+)
