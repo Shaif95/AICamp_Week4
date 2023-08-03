@@ -181,13 +181,16 @@ df_sorted = df.sort_values(by='Potential-Overall', ascending=False)
 players = df_filtered['Known As']
 potential_improvement = df_filtered['Potential-Overall']
 
+fig, ax = plt.subplots(figsize=(10, 6))
 ax.bar(players, potential_improvement, color='skyblue')
 ax.set_xlabel('Players')
 ax.set_ylabel('Potential Improvement')
 ax.set_title('Players with the Best Potential for Improvement')
 plt.xticks(rotation=45, ha='right')
 plt.tight_layout()
-plt.show()
+
+# Show the plot using Streamlit
+st.pyplot(fig)
 
 st.write(
   "In order to do this, we first needed to filter out the players that were of low overalls, since there were many with high potential-overall differences since they had a lot of time to play. I did this by ensuring that the data only included players above the rating of 85 so that we only received data from the currently relevant players. This showed that the players with the best potential for improvement included big names such as Pedri, Foden, Vinicius Jr., Haaland, and more."
