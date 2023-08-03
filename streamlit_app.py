@@ -6,8 +6,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import warnings
 
-warnings.filterwarnings("ignore")
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 #look for more information here https://docs.streamlit.io/library/cheatsheet
 
