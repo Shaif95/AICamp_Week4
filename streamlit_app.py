@@ -98,9 +98,7 @@ ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 # Display the pie chart in Streamlit
 st.pyplot(fig)
-
-st.write("Make sure you have both Streamlit and Matplotlib installed (pip install streamlit matplotlib) to run the code correctly. Also, replace the sample data (sizes, labels, colors, explode) with your actual data to create the desired pie chart.")
-
+#Make sure you have both Streamlit and Matplotlib installed (pip install streamlit matplotlib) to run the code correctly. Also, replace the sample data (sizes, labels, colors, explode) with your actual data to create the desired pie chart.
 
 st.write(
   "There are two types of skill levels: Skills used during play and scores for how each player plays in a position. For the actual skills, there is a low intersection between the players overall score and skill score - many of which are in the low 10s and maybe even lower. There are still some outliers, with some being higher in the 40s. I believe this is the case as many players are good in their own type of skillsets and I theorize many players in different skill intersections are unique and don't come up as much in different skills. For each position on the field, there is a much higher result, with some going into the 30s but with some still in the early 10s. Another thing that could affect this is where the players usually play on the field. A goalie usually isn't good at scoring and a offensive player usually doesn't block shots from reaching the goal. Due to this, many players will not share all of the skill sets that are avaliable in the dataset."
@@ -128,9 +126,11 @@ plt.tight_layout()
 plt.show()
 st.write("In order to do this, we first needed to filter out the players that were of low overalls, since there were many with high potential-overall differences since they had a lot of time to play. I did this by ensuring that the data only included players above the rating of 85 so that we only received data from the currently relevant players. This showed that the players with the best potential for improvement included big names such as Pedri, Foden, Vinicius Jr., Haaland, and more.")
 
+
 st.header("How does the age of a player affect their potential?")
 df['Potential-Overall'] = df['Potential'] - df['Overall']
-px.scatter(df,x='Age',  y='Potential-Overall', color="Overall")
+fig2 = px.scatter(df,x='Age',  y='Potential-Overall', color="Overall")
+fig2
 st.write("Oftentimes, as someone’s body ages, they get worse at the sport they play. This is shown through the graph, where young teenagers with time to go have higher potentials for improvement, whereas older players who are due to retire soon have a lower, or even no potential for improvement.")
 
 st.header("How does potential affect the value of the release clause?")
@@ -158,18 +158,25 @@ filtered_df = df[df['Best Position'] == 'CAM']
 sorted_df = filtered_df.sort_values(by='Overall').head(20)
 
 # Plotting a bar chart for Best Position with Known As in X
-plt.figure(figsize=(15, 5))  # Adjust the figure size if needed
+st.pyplot(plt.figure(figsize=(15, 5)))  # Adjust the figure size if needed
+
+# Plot the bar chart
 plt.bar(sorted_df['Known As'], sorted_df['Overall'])
-plt.xlabel('Best Position')
-plt.ylabel('Known As')
+plt.xlabel('Known As')
+plt.ylabel('Best Position')
 plt.title('Best Position vs. Known As')
 plt.xticks(rotation=20)  # Rotate the x-axis labels if they are too long
-plt.show()
+
+# Display the chart using Streamlit
+st.pyplot()
+
 #How does wage impact Overall ranking?  
 st.header("how doesa the wage of a player impact their over all ranking?")
-px.scatter(df, x='Value(in Euro)', y='Overall', color="Nationality")
+val_overall = px.scatter(df, x='Value(in Euro)', y='Overall', color="Nationality")
+st.plotly_chart(val_overall)
 #Is there any relation between Position played and age ?    : Scatter
 st.header("what is the relation between postion played and the age of a player")
 
-px.scatter(df, x='Age', y='Positions Played', color="Overall")
+pos_age = px.scatter(df, x='Age', y='Positions Played', color="Overall")
 #Conclusion :
+st.plotly_chart(pos_age)
