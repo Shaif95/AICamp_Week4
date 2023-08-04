@@ -11,7 +11,6 @@ import warnings
 #adding title
 st.title("Dizzy Doughnut")
 
-
 st.write(
   "Hi! My name is Spencer. I'm going into 10th grade and decided to join AI Camp because I was curious on what data analysis was as well as algorithms and AI. I hoped to be able to use what I learn for my further interests in enginnering and robotics"
 )
@@ -24,6 +23,10 @@ st.write(
   "Hi, my name is Rishi Kumar, and I am a Grade 11 IB student from Toronto, Canada. I took this course in order to learn how I could apply my knowledge of Python better in real life, and data science is one of the best areas to use it in."
 )
 
+st.header("FIFA 23 :")
+
+st.subheader("Introduction")
+st.write("The dataset that we collected is a collection of 17 thousand players from 2017 to 2023. FIFA is the worlds's soccer organization, with all the worlds best players playing in tournaments to eventually play in the World Cup. Although this dataset was originally meant for people would would play the game FIFA based on the actual World Cup to get stats for players, it is also useful to find information based on the most recent player batch and find answers to questions that we might have.")
 
 df = pd.read_csv("Fifa.csv")
 
@@ -50,34 +53,38 @@ num_images = len(image_links)
 num_rows = 2
 num_cols = (num_images + 1) // 2
 
+
 # Create a function to display small-sized images on a horizontal line using Streamlit
 def display_images():
-    # Define the desired size for the thumbnails
-    thumbnail_size = (100, 100)
+  # Define the desired size for the thumbnails
+  thumbnail_size = (100, 100)
 
-    # Calculate the number of images to show per row
-    images_per_row = 4
-    num_rows = (num_images + images_per_row - 1) // images_per_row
+  # Calculate the number of images to show per row
+  images_per_row = 4
+  num_rows = (num_images + images_per_row - 1) // images_per_row
 
-    # Create the horizontal layout with multiple columns
-    cols = st.columns(images_per_row)
+  # Create the horizontal layout with multiple columns
+  cols = st.columns(images_per_row)
 
-    # Plot each image in the grid with its corresponding label
-    for i, image_link in enumerate(image_links):
-        if i < num_images:
-            image = load_image_from_url(image_link)
-            label = labels[i]
+  # Plot each image in the grid with its corresponding label
+  for i, image_link in enumerate(image_links):
+    if i < num_images:
+      image = load_image_from_url(image_link)
+      label = labels[i]
 
-            # Resize the image to the desired thumbnail size
-            image.thumbnail(thumbnail_size)
+      # Resize the image to the desired thumbnail size
+      image.thumbnail(thumbnail_size)
 
-            # Display the image with label in the corresponding column
-            cols[i % images_per_row].image(image, caption=label, width=thumbnail_size[0])
+      # Display the image with label in the corresponding column
+      cols[i % images_per_row].image(image,
+                                     caption=label,
+                                     width=thumbnail_size[0])
+
 
 # Rest of the code remains the same...
 
-
 #Introduction : Write a couple of lines about the dataset Fifa 23
+
 
 st.header("Using the dataset, who is the GOAT of soccer?")
 
