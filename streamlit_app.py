@@ -26,6 +26,8 @@ st.write(
 st.header("FIFA 23 :")
 
 st.subheader("Introduction")
+
+st.text("Spencer")
 st.write("The dataset that we collected is a collection of 17 thousand players from 2017 to 2023. FIFA is the worlds's soccer organization, with all the worlds best players playing in tournaments to eventually play in the World Cup. Although this dataset was originally meant for people would would play the game FIFA based on the actual World Cup to get stats for players, it is also useful to find information based on the most recent player batch and find answers to questions that we might have.")
 
 df = pd.read_csv("Fifa.csv")
@@ -177,6 +179,8 @@ st.write(
 
 #Rishi :
 
+st.text("Rishi")
+
 st.header("Who are the players with the best potential for improvement?")
 
 df['Potential-Overall'] = df['Potential'] - df['Overall']
@@ -240,7 +244,8 @@ st.write(
 
 #Gabe :
 
-#Who are the Top players based on different Positions ?      : Bar Chart
+st.text("Gabe")
+
 st.header("what postions are players of a similar rank most likely to play")
 import pandas as pd
 import matplotlib.pyplot as plt
